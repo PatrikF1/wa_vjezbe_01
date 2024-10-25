@@ -1,16 +1,27 @@
-const express = require("express")
-
+const express = require("express");
 const app = express();
 
 const PORT = 3000;
 
-
+const user = [
+    {id: 1, ime: "Patrik", prezime: "Fabijanic"},
+    {id: 2, ime: "Ivan", prezime: "Ivic"},
+    {id: 3, ime: "Petar", prezime: "Peric"}
+];
 
 
 app.get("/", (req,res) => {
-    res.send("hello world")
+    res.sendFile(__dirname + '/public/index.html')
 });
 
+
+app.get("/about", (req,res) => {
+    res.sendFile(__dirname + '/public/about.html')
+})
+
+app.get("/users", (req,res) => {
+    res.json(user)
+})
 
 app.listen(PORT, (error) => {
     if (error) {
